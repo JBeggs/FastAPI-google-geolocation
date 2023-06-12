@@ -16,6 +16,26 @@ And update it with these records
     password=password_strong
 
 
+## Endpoints
+
+    http://0.0.0.0:8000/docs/
+
+Get on root, accepts json, no authentication, used to monitor uptime 
+
+    http://0.0.0.0:8000/
+    
+Use username and password to get bearer token
+
+    http://0.0.0.0:8000/api/v1/auth/token
+
+Use token to hit main request
+
+    http://0.0.0.0:8000/api/v1/
+
+### Pytest
+
+![Example](app/images/pytest.png)
+
 ## Virtual Env
 
 In the root of the directory
