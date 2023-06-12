@@ -1,6 +1,21 @@
 # FastAPI-google-geolocation
 Developed this app to process AP scan bssid's into location, latitude and longitude
 
+## .env File
+
+The .env file is used to inject the system variables for the application
+
+In order for the app to work and to get login details create .env file in the root
+And update it with these records
+
+### N.B. You beed a valid google api key
+
+    google-maps-url-json=https://www.googleapis.com/geolocation/v1/geolocate?key=test
+    SECRET=aruba-ap-geolocation-app
+    username=admin@aruba.com
+    password=password_strong
+
+
 # Virtual Env
 
 In the root of the directory
@@ -65,3 +80,4 @@ List containers
 Remove Container
 
     docker container rm container_id
+
