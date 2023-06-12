@@ -34,7 +34,16 @@ Use token to hit main request
 
 ### Pytest
 
-![Example](app/images/pytest.png)
+![Pytest](app/images/pytest.png)
+
+
+## Insomia Authentication
+
+To get the token
+![insomnia_auth.png](app%2Fimages%2Finsomnia_auth.png)
+
+To use the token
+![insomnia_token.png](app%2Fimages%2Finsomnia_token.png)
 
 ## Virtual Env
 
