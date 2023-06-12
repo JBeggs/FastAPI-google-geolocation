@@ -16,7 +16,7 @@ The .env file is used to inject the system variables for the application
 In order for the app to work and to get login details create .env file in the root
 And update it with these records
 
-### N.B. You beed a valid google api key
+### N.B. You need a valid google api key
 
     google-maps-url-json=https://www.googleapis.com/geolocation/v1/geolocate?key=test
     SECRET=aruba-ap-geolocation-app
@@ -48,7 +48,7 @@ Use token to hit main request
 
 ![insomnia_status.png](app%2Fimages%2Finsomnia_status.png)
 
-## Insomia Authentication
+## Insomnia Authentication
 
 To get the token
 ![insomnia_auth.png](app%2Fimages%2Finsomnia_auth.png)
