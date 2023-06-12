@@ -44,6 +44,12 @@ def test_api_no_cache():
     auth_url = "/api/v1/auth/token"
     client   = TestClient(app)
 
+    root_response = client.get(
+        '/',
+        params={'message' : 'working'}
+    )
+    assert root_response.status_code == 200
+
     with open('scan.json') as json_file:
         test_json = json.loads(json_file.read())
 
@@ -72,6 +78,12 @@ def test_api_cache():
     api_url  = "/api/v1"
     auth_url = "/api/v1/auth/token"
     client   = TestClient(app)
+
+    root_response = client.get(
+        '/',
+        params={'message' : 'working'}
+    )
+    assert root_response.status_code == 200
 
     with open('scan.json') as json_file:
         test_json = json.loads(json_file.read())

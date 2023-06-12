@@ -146,10 +146,10 @@ Then run
 ---------- coverage: platform linux, python 3.9.17-final-0 -----------
 Name          Stmts   Miss  Cover
 ---------------------------------
-main.py         106     19    82%
-test_api.py      46      1    98%
+main.py         106     13    88%
+test_api.py      50      1    98%
 ---------------------------------
-TOTAL           152     20    87%
+TOTAL           156     14    91%
 
 ```
 
@@ -221,7 +221,7 @@ def process_request(client, auth_url, api_url, json_data):
 
 ```
 
-Then we use the token bearer in the headers to send the apscan_data
+Then we use the token bearer in the headers to send the  apscan_data
 
 ```
 
