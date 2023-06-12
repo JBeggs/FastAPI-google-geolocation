@@ -16,7 +16,7 @@ And update it with these records
     password=password_strong
 
 
-# Virtual Env
+## Virtual Env
 
 In the root of the directory
 
@@ -29,7 +29,7 @@ In the root of the directory
     pip install -r requirements.txt
     pip install --upgrade pip
 
-## Run tests
+### Run tests
 
 In the root directory
 
@@ -63,7 +63,7 @@ Then run
     pytest
 
 
-## Helpful Commands
+### Helpful Commands
 
 List images
 
