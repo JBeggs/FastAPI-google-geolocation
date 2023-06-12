@@ -130,6 +130,96 @@ Then run
     pytest
 
 
+# Pytest code for test_api_no_cache()
+
+Each test has to be setup and monitored
+
+For the tests I use the scan.json file
+```
+
+    api_url  = "/api/v1"
+    auth_url = "/api/v1/auth/token"
+    client   = TestClient(app)
+
+    with open('scan.json') as json_file:
+        test_json = json.loads(json_file.read())
+
+    stats = {
+        'cached'   : 0,
+        'uncached' : 0,
+    }
+
+```
+
+## Set TTL
+
+    test_data['ttl'] = 0
+
+For the second test this step isn't taken.
+
+Cache expires immediately leading to the cache not being used
+
+```
+
+    for test_data in test_json:
+
+        # NB enable instant expire on cache with this key
+        test_data['ttl'] = 0
+        request_response = process_request(client, auth_url, api_url, test_data)
+        json_content     = json.loads(request_response.content)
+        if json_content['cached']:
+            stats['cached'] += 1
+        else:
+            stats['uncached'] += 1
+        assert request_response.status_code == 200
+    assert stats['cached'] == 0
+    assert stats['uncached'] == 1604
+
+```
+Then we assert the request_response.status_code to be 200
+And assert all items are uncached
+
+
+## Meat and bones
+
+First we need to get the access token, so we POST the auth_url with data : username and password
+
+```
+
+# Meat and bones of the two tests
+def process_request(client, auth_url, api_url, json_data):
+    access_token = client.post(
+        auth_url,
+        data={
+            'username': os.environ.get('username'),
+            'password': os.environ.get('password')
+        },
+    )
+
+```
+
+Then we use the token bearer in the headers to send the apscan_data
+
+```
+
+    token = json.loads(access_token.content)
+    headers = {
+        "content-type": "application/json",
+        "Authorization": f'Bearer {token["access_token"]}',
+    }
+
+    response = client.post(
+        api_url,
+        headers=headers,
+        json=json_data
+    )
+
+    return response
+
+```
+
+
+
 ### Helpful Commands
 
 List images
