@@ -8,6 +8,13 @@ Developed this app to process AP scan bssid's into location, latitude and longit
 3. python-dotenv - store sensitive information
 4. pytest - api tested
 
+When request limit is reached you receive a different status code
+
+    assert request_response.status_code == 429
+
+Status 429 means you need to slow down hitting the API
+
+
 
 ## .env File
 
@@ -190,15 +197,21 @@ Cache expires immediately leading to the cache not being used
         test_data['ttl'] = 0
         request_response = process_request(client, auth_url, api_url, test_data)
         json_content     = json.loads(request_response.content)
-        if json_content['cached']:
-            stats['cached'] += 1
+        if 'cached' in json_content:
+            if json_content['cached']:
+                stats['cached'] += 1
+            else:
+                stats['uncached'] += 1
+            assert request_response.status_code == 200
         else:
-            stats['uncached'] += 1
-        assert request_response.status_code == 200
+            assert request_response.status_code == 429
     assert stats['cached'] == 0
     assert stats['uncached'] == 1604
 
 ```
+
+NB! When limit is reached Status code is 429
+
 Then we assert the request_response.status_code to be 200
 And assert all items are uncached
 

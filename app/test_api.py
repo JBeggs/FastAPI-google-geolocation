@@ -64,11 +64,14 @@ def test_api_no_cache():
         test_data['ttl'] = 0
         request_response = process_request(client, auth_url, api_url, test_data)
         json_content     = json.loads(request_response.content)
-        if json_content['cached']:
-            stats['cached'] += 1
+        if 'cached' in json_content:
+            if json_content['cached']:
+                stats['cached'] += 1
+            else:
+                stats['uncached'] += 1
+            assert request_response.status_code == 200
         else:
-            stats['uncached'] += 1
-        assert request_response.status_code == 200
+            assert request_response.status_code == 429
     assert stats['cached'] == 0
     assert stats['uncached'] == 1604
 
@@ -96,11 +99,14 @@ def test_api_cache():
     for test_data in test_json:
         request_response = process_request(client, auth_url, api_url, test_data)
         json_content = json.loads(request_response.content)
-        if json_content['cached']:
-            stats['cached'] += 1
+        if 'cached' in json_content:
+            if json_content['cached']:
+                stats['cached'] += 1
+            else:
+                stats['uncached'] += 1
+            assert request_response.status_code == 200
         else:
-            stats['uncached'] += 1
-        assert request_response.status_code == 200
+            assert request_response.status_code == 429
 
     assert stats['cached'] == 1563
     assert stats['uncached'] == 41
