@@ -26,19 +26,19 @@ And update it with these records
 
 ## Endpoints
 
-    http://0.0.0.0:8000/docs/
+    http://0.0.0.0:80/docs/
 
 Get on root, accepts json, no authentication, used to monitor uptime 
 
-    http://0.0.0.0:8000/
+    http://0.0.0.0:80/
     
 Use username and password to get bearer token
 
-    http://0.0.0.0:8000/api/v1/auth/token
+    http://0.0.0.0:80/api/v1/auth/token
 
 Use token to hit main request
 
-    http://0.0.0.0:8000/api/v1/
+    http://0.0.0.0:80/api/v1/
 
 ### Pytest
 
