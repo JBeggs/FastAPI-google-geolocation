@@ -36,6 +36,9 @@ Use token to hit main request
 
 ![Pytest](app/images/pytest.png)
 
+## Insomnia root status
+
+![insomnia_status.png](app%2Fimages%2Finsomnia_status.png)
 
 ## Insomia Authentication
 
@@ -44,6 +47,41 @@ To get the token
 
 To use the token
 ![insomnia_token.png](app%2Fimages%2Finsomnia_token.png)
+
+### Data structure needed
+
+```
+{
+    "apscan_data": [
+      {
+        "band": "5.0",
+        "bssid": "e8:1d:a8:68:a6:6c",
+        "channel": "44",
+        "frequency": 5220,
+        "rates": "6.0 - 866.7 Mbps",
+        "rssi": -67,
+        "security": "open",
+        "ssid": "McDonalds@VAST",
+        "timestamp": 1523180151.0,
+        "vendor": "Ruckus Wireless",
+        "width": "80"
+      },
+      {
+        "band": "2.4",
+        "bssid": "c0:a0:bb:c4:10:d6",
+        "channel": "1",
+        "frequency": 2412,
+        "rates": "1.0 - 54.0 Mbps",
+        "rssi": -64,
+        "security": "wpa-psk",
+        "ssid": "default",
+        "timestamp": 1523180151.0,
+        "vendor": "D-Link International",
+        "width": "40"
+      }
+    ]
+  }
+```
 
 ## Virtual Env
 
