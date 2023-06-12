@@ -138,6 +138,21 @@ Then run
     pytest
 
 
+## Pytest Coverage 
+
+    pytest --cov=../app
+
+```
+---------- coverage: platform linux, python 3.9.17-final-0 -----------
+Name          Stmts   Miss  Cover
+---------------------------------
+main.py         106     19    82%
+test_api.py      46      1    98%
+---------------------------------
+TOTAL           152     20    87%
+
+```
+
 # Pytest code for test_api_no_cache()
 
 Each test has to be setup and monitored

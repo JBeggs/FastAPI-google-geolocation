@@ -10,3 +10,5 @@ expiring-dict
 fastapi-login
 python-multipart
 nose
+pytest-cov
+pytest-xdist
