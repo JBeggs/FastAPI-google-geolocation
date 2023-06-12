@@ -1,6 +1,14 @@
 # FastAPI-google-geolocation
 Developed this app to process AP scan bssid's into location, latitude and longitude
 
+### Features
+
+1. slowapi - limited to 45 requests a second
+2. expiring-dict - Cache items expire, not the whole cache
+3. python-dotenv - store sensitive information
+4. pytest - api tested
+
+
 ## .env File
 
 The .env file is used to inject the system variables for the application
@@ -218,6 +226,39 @@ Then we use the token bearer in the headers to send the apscan_data
 
 ```
 
+## Calling google API
+
+Setting the tests variable is done by checking the url Pytest assigns
+
+```
+    global test
+    global cache_expire
+
+    #  When we test, we can't hit google api
+    if 'http://testserver/' in request.base_url.__str__():
+        test = True
+```
+
+I needed to return data for the tests without hitting the google endpoints
+
+```
+    # Testing skips unwanted calls
+    if not test:
+        request = requests.post(
+            os.environ.get('google-maps-url-json'),
+            json=json
+        )
+        response = request.json()
+    else:
+        # return same data for testing
+        response = {
+            "location": {
+                "lat": -26.2707593,
+                "lng": 28.1122679
+            },
+            "accuracy": 1
+        }
+```
 
 
 ### Helpful Commands
